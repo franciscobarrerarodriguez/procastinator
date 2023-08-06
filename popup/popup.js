@@ -49,17 +49,3 @@ storiesBtnSwitch.addEventListener("change", (event) => {
   };
   sendMessageToContentScript(action);
 });
-//
-// let chatStoriesBtn = false;
-// const chatStoriesSwitch = document.getElementById("chat-stories-switch");
-//
-// chatStoriesSwitch.addEventListener("change", async (event) => {
-//   chatStoriesBtn = event.target.checked;
-//   const action = {
-//     type: Types.STORIES_BUTTON,
-//     payload: {
-//       value: chatStoriesBtn,
-//     },
-//   };
-//   sendMessageToContentScript(action);
-// });
