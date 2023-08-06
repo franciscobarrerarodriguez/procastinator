@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./popup.css">
+    <title>Procastinator</title>
+</head>
+<body>
+<nav class="head">
+    <img src="/assets/icon_2.png" alt="procastinator logo">
+    <h1>
+        Procastinator
+    </h1>
+</nav>
+<div class="version">
+    <span>v.1.0</span>
+</div>
+<main>
+    <ul class="list">
+        <li class="list__item">
+            <div class="focus__card">
+                <div class="focus__card--head">
+                    <h3>Whatsapp options</h3>
+                </div>
+                <div class="focus__card--body">
+                    <ul class="options__list">
+                        <li class="options__list--item">
+                            Stories button
+                            <div class="control">
+                                <span class="caption">Hide</span>
+                                <label class="switch">
+                                    <input id="stories-btn-switch" type="checkbox"/>
+                                    <span class="slider round"></span>
+                                </label>
+                                <span class="caption">Show</span>
+                            </div>
+                        </li>
+                        <li class="options__list--item">
+                            Stories on chat
+                            <div class="control">
+                                <span class="caption">Hide</span>
+                                <label class="switch">
+                                    <input id="chat-stories-switch" type="checkbox"/>
+                                    <span class="slider round"></span>
+                                </label>
+                                <span class="caption">Show</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="focus__card--footer"></div>
+            </div>
+        </li>
+    </ul>
+</main>
+<footer>
+    <a href="https://fullsquat.dev" target="_blank">
+        @fullsquatdev
+    </a>
+</footer>
+<script src="/popup/popup.js"></script>
+</body>
+</html>
