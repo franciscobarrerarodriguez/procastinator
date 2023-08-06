@@ -1,6 +1,6 @@
 # Procastinator Chrome Extension
 
-![Procastinator Logo](assets/icon_2.png)
+<img src="assets/icon_2.png" alt="Procastinator Logo" width="100px" height="auto"/>
 
 ## Overview
 
