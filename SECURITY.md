@@ -2,20 +2,20 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| 0.0.x   | :white_check_mark: |
+
+Procastinator currently supports version 0.0.x. We strive to provide timely security updates and ensure a safe and secure user experience.
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+If you discover any security vulnerabilities in Procastinator, we encourage you to report them promptly. Your cooperation in ensuring the security of the extension is highly appreciated.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+To report a vulnerability, please contact us via email at francisco.barrera@uptc.edu.co. We will acknowledge receipt of your report within [specify timeframe], and our team will promptly investigate the issue.
+
+Upon reviewing the vulnerability, we will keep you informed of our progress and the actions taken to address the matter. If the vulnerability is accepted, we will work diligently to release a security update within a reasonable timeframe.
+
+Your contributions to improving the security of Procastinator are invaluable, and we are committed to maintaining an open and transparent approach in handling vulnerability reports.
+
+Thank you for your cooperation in making Procastinator a safer extension for all users.
