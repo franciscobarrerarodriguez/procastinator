@@ -7,14 +7,15 @@ const Types = {
   STORIES_BUTTON: "STORIES_BUTTON",
   UPDATE_STORIES_BUTTON: "UPDATE_STORIES_BUTTON",
   CHAT_STORIES_BUTTON: "CHAT_STORIES_BUTTON",
+  CHANNELS_BUTTON: "CHANNELS_BUTTON",
+  UPDATE_CHANNELS_BUTTON: "UPDATE_CHANNELS_BUTTON",
 };
 
 const compareValues = (response) => {
   const storiesBtnSwitch = document.getElementById("stories-btn-switch");
   storiesBtnSwitch.checked = response.payload[Types.STORIES_BUTTON] !== "false";
-  const chatStoriesSwitch = document.getElementById("chat-stories-switch");
-  chatStoriesSwitch.checked =
-    response.payload[Types.CHAT_STORIES_BUTTON] !== "false";
+  const channelsBtnSwitch = document.getElementById("channels-btn-switch");
+  channelsBtnSwitch.checked = response.payload[Types.STORIES_BUTTON] !== "false";
 };
 
 const sendMessageToContentScript = (action) => {
@@ -38,11 +39,23 @@ action = {
 sendMessageToContentScript(action);
 
 const storiesBtnSwitch = document.getElementById("stories-btn-switch");
+const channelsBtnSwitch = document.getElementById("channels-btn-switch");
 
 storiesBtnSwitch.addEventListener("change", (event) => {
   const value = event.target.checked;
   const action = {
     type: Types.UPDATE_STORIES_BUTTON,
+    payload: {
+      value,
+    },
+  };
+  sendMessageToContentScript(action);
+});
+
+channelsBtnSwitch.addEventListener("change", (event) => {
+  const value = event.target.checked;
+  const action = {
+    type: Types.UPDATE_CHANNELS_BUTTON,
     payload: {
       value,
     },

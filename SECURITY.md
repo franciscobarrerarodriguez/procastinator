@@ -3,7 +3,7 @@
 ## Supported Versions
 
 | Version | Supported          |
-| ------- | ------------------ |
+|---------|--------------------|
 | 0.0.x   | :white_check_mark: |
 
 Procastinator currently supports version 0.0.x. We strive to provide timely security updates and ensure a safe and secure user experience.
