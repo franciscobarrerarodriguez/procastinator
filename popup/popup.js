@@ -15,7 +15,8 @@ const compareValues = (response) => {
   const storiesBtnSwitch = document.getElementById("stories-btn-switch");
   storiesBtnSwitch.checked = response.payload[Types.STORIES_BUTTON] !== "false";
   const channelsBtnSwitch = document.getElementById("channels-btn-switch");
-  channelsBtnSwitch.checked = response.payload[Types.STORIES_BUTTON] !== "false";
+  channelsBtnSwitch.checked =
+    response.payload[Types.STORIES_BUTTON] !== "false";
 };
 
 const sendMessageToContentScript = (action) => {
