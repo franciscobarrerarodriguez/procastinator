@@ -1,5 +1,3 @@
-let interval;
-
 const Types = {
   DONE: "DONE",
   INIT_POPUP: "INIT_POPUP",
@@ -9,6 +7,8 @@ const Types = {
   CHAT_STORIES_BUTTON: "CHAT_STORIES_BUTTON",
   CHANNELS_BUTTON: "CHANNELS_BUTTON",
   UPDATE_CHANNELS_BUTTON: "UPDATE_CHANNELS_BUTTON",
+  COMMUNITIES_BUTTON: "COMMUNITIES_BUTTON",
+  UPDATE_COMMUNITIES_BUTTON: "UPDATE_COMMUNITIES_BUTTON",
 };
 
 if (localStorage.getItem(Types.STORIES_BUTTON) === null) {
@@ -19,12 +19,17 @@ if (localStorage.getItem(Types.CHANNELS_BUTTON) === null) {
   localStorage.setItem(Types.CHANNELS_BUTTON, false);
 }
 
+if (localStorage.getItem(Types.COMMUNITIES_BUTTON) === null) {
+  localStorage.setItem(Types.COMMUNITIES_BUTTON, true);
+}
+
 if (localStorage.getItem(Types.CHAT_STORIES_BUTTON) === null) {
   localStorage.setItem(Types.CHAT_STORIES_BUTTON, true);
 }
 
 const storiesId = "stories-btn";
 const channelsId = "channels-btn";
+const communitiesId = "communities-btn";
 
 function hasButtons() {
   let storiesBtn = document.querySelector(
@@ -33,7 +38,10 @@ function hasButtons() {
   let channelsBtn = document.querySelector(
     `#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(2)`,
   );
-  return !!storiesBtn && !!channelsBtn;
+  let communitiesBtn = document.querySelector(
+    "#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(1)",
+  );
+  return !!storiesBtn && !!channelsBtn && !!communitiesBtn;
 }
 
 function createIds(interval) {
@@ -46,6 +54,10 @@ function createIds(interval) {
       `#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(2)`,
     );
     channelsBtn.id = channelsId;
+    let communitiesBtn = document.querySelector(
+      "#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(1)",
+    );
+    communitiesBtn.id = communitiesId;
     clearInterval(interval);
   }
 }
@@ -66,6 +78,14 @@ function removeChannelsBtn(interval) {
   }
 }
 
+function removeCommunitiesBtn(interval) {
+  let communitiesBtn = document.getElementById(communitiesId);
+  if (communitiesBtn) {
+    communitiesBtn.style.display = "none";
+    clearInterval(interval);
+  }
+}
+
 function showStoriesBtn(interval) {
   let storiesBtn = document.getElementById(storiesId);
   if (storiesBtn) {
@@ -82,17 +102,25 @@ function showChannelsBtn(interval) {
   }
 }
 
+function showCommunitiesBtn(interval) {
+  let communitiesBtn = document.getElementById(communitiesId);
+  if (communitiesBtn) {
+    communitiesBtn.style.display = "unset";
+    clearInterval(interval);
+  }
+}
+
 function removeChatStoriesBtn(interval) {}
 
 const updateStoriesButton = (request) => {
   if (request.payload.value === false) {
     localStorage.setItem(Types.STORIES_BUTTON, false);
-    interval = setInterval(() => {
+    const interval = setInterval(() => {
       removeStoriesBtn(interval);
     }, 100);
   } else {
     localStorage.setItem(Types.STORIES_BUTTON, true);
-    interval = setInterval(() => {
+    const interval = setInterval(() => {
       showStoriesBtn(interval);
     }, 100);
   }
@@ -101,13 +129,27 @@ const updateStoriesButton = (request) => {
 const updateChannelsButton = (request) => {
   if (request.payload.value === false) {
     localStorage.setItem(Types.CHANNELS_BUTTON, false);
-    interval = setInterval(() => {
+    const interval = setInterval(() => {
       removeChannelsBtn(interval);
     }, 100);
   } else {
     localStorage.setItem(Types.CHANNELS_BUTTON, true);
-    interval = setInterval(() => {
+    const interval = setInterval(() => {
       showChannelsBtn(interval);
+    }, 100);
+  }
+};
+
+const updateCommunitiesButton = (request) => {
+  if (request.payload.value === false) {
+    localStorage.setItem(Types.COMMUNITIES_BUTTON, false);
+    const interval = setInterval(() => {
+      removeCommunitiesBtn(interval);
+    }, 100);
+  } else {
+    localStorage.setItem(Types.COMMUNITIES_BUTTON, true);
+    const interval = setInterval(() => {
+      showCommunitiesBtn(interval);
     }, 100);
   }
 };
@@ -121,6 +163,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         payload: {
           [Types.STORIES_BUTTON]: localStorage.getItem(Types.STORIES_BUTTON),
           [Types.CHANNELS_BUTTON]: localStorage.getItem(Types.CHANNELS_BUTTON),
+          [Types.COMMUNITIES_BUTTON]: localStorage.getItem(
+            Types.COMMUNITIES_BUTTON,
+          ),
           [Types.CHAT_STORIES_BUTTON]: localStorage.getItem(
             Types.CHAT_STORIES_BUTTON,
           ),
@@ -139,6 +184,14 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
     case Types.UPDATE_CHANNELS_BUTTON:
       updateChannelsButton(request);
+      response = {
+        type: Types.DONE,
+      };
+      sendResponse(response);
+      break;
+
+    case Types.UPDATE_COMMUNITIES_BUTTON:
+      updateCommunitiesButton(request);
       response = {
         type: Types.DONE,
       };
@@ -166,9 +219,14 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
           removeChannelsBtn(interval2);
         }, 500);
       }
-      if (localStorage.getItem(Types.CHAT_STORIES_BUTTON) === "false") {
+      if (localStorage.getItem(Types.COMMUNITIES_BUTTON) === "false") {
         let interval3 = setInterval(() => {
-          removeChatStoriesBtn(interval3);
+          removeCommunitiesBtn(interval3);
+        }, 500);
+      }
+      if (localStorage.getItem(Types.CHAT_STORIES_BUTTON) === "false") {
+        let interval4 = setInterval(() => {
+          removeChatStoriesBtn(interval4);
         }, 500);
       }
     },

@@ -9,6 +9,8 @@ const Types = {
   CHAT_STORIES_BUTTON: "CHAT_STORIES_BUTTON",
   CHANNELS_BUTTON: "CHANNELS_BUTTON",
   UPDATE_CHANNELS_BUTTON: "UPDATE_CHANNELS_BUTTON",
+  COMMUNITIES_BUTTON: "COMMUNITIES_BUTTON",
+  UPDATE_COMMUNITIES_BUTTON: "UPDATE_COMMUNITIES_BUTTON",
 };
 
 const compareValues = (response) => {
@@ -17,6 +19,11 @@ const compareValues = (response) => {
   const channelsBtnSwitch = document.getElementById("channels-btn-switch");
   channelsBtnSwitch.checked =
     response.payload[Types.STORIES_BUTTON] !== "false";
+  const communitiesBtnSwitch = document.getElementById(
+    "communities-btn-switch",
+  );
+  communitiesBtnSwitch.checked =
+    response.payload[Types.COMMUNITIES_BUTTON] !== "false";
 };
 
 const sendMessageToContentScript = (action) => {
@@ -41,6 +48,7 @@ sendMessageToContentScript(action);
 
 const storiesBtnSwitch = document.getElementById("stories-btn-switch");
 const channelsBtnSwitch = document.getElementById("channels-btn-switch");
+const communitiesBtnSwitch = document.getElementById("communities-btn-switch");
 
 storiesBtnSwitch.addEventListener("change", (event) => {
   const value = event.target.checked;
@@ -57,6 +65,17 @@ channelsBtnSwitch.addEventListener("change", (event) => {
   const value = event.target.checked;
   const action = {
     type: Types.UPDATE_CHANNELS_BUTTON,
+    payload: {
+      value,
+    },
+  };
+  sendMessageToContentScript(action);
+});
+
+communitiesBtnSwitch.addEventListener("change", (event) => {
+  const value = event.target.checked;
+  const action = {
+    type: Types.UPDATE_COMMUNITIES_BUTTON,
     payload: {
       value,
     },
