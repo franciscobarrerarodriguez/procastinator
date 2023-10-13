@@ -1,6 +1,6 @@
 {
     "name": "Procastinator",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Keep whatsapp web lite, without stories",
     "permissions": ["tabs", "storage"],
     "host_permissions": ["https://web.whatsapp.com/*"],

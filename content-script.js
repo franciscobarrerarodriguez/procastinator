@@ -11,53 +11,59 @@ const Types = {
   UPDATE_COMMUNITIES_BUTTON: "UPDATE_COMMUNITIES_BUTTON",
 };
 
+if (localStorage.getItem(Types.COMMUNITIES_BUTTON) === null) {
+  localStorage.setItem(Types.COMMUNITIES_BUTTON, false.toString());
+}
+
 if (localStorage.getItem(Types.STORIES_BUTTON) === null) {
-  localStorage.setItem(Types.STORIES_BUTTON, false);
+  localStorage.setItem(Types.STORIES_BUTTON, false.toString());
 }
 
 if (localStorage.getItem(Types.CHANNELS_BUTTON) === null) {
-  localStorage.setItem(Types.CHANNELS_BUTTON, false);
-}
-
-if (localStorage.getItem(Types.COMMUNITIES_BUTTON) === null) {
-  localStorage.setItem(Types.COMMUNITIES_BUTTON, true);
+  localStorage.setItem(Types.CHANNELS_BUTTON, false.toString());
 }
 
 if (localStorage.getItem(Types.CHAT_STORIES_BUTTON) === null) {
-  localStorage.setItem(Types.CHAT_STORIES_BUTTON, true);
+  localStorage.setItem(Types.CHAT_STORIES_BUTTON, true.toString());
 }
 
+const communitiesId = "communities-btn";
 const storiesId = "stories-btn";
 const channelsId = "channels-btn";
-const communitiesId = "communities-btn";
+const messagesId = "messages-btn";
+
+const ids = [communitiesId, storiesId, channelsId, messagesId];
 
 function hasButtons() {
-  let storiesBtn = document.querySelector(
-    `#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(3)`,
+  const optionsList = document.querySelector(
+    "#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span",
   );
-  let channelsBtn = document.querySelector(
-    `#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(2)`,
+
+  if (!optionsList) {
+    return false;
+  }
+
+  const children = optionsList.querySelectorAll("._3OtEr");
+  const nextElement = children[3]?.nextElementSibling;
+
+  return (
+    nextElement &&
+    nextElement.tagName.toUpperCase() === "SPAN" &&
+    children.length === 5
   );
-  let communitiesBtn = document.querySelector(
-    "#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(1)",
-  );
-  return !!storiesBtn && !!channelsBtn && !!communitiesBtn;
 }
 
 function createIds(interval) {
   if (hasButtons()) {
-    let storiesBtn = document.querySelector(
-      `#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(3)`,
+    let optionsList = document.querySelector(
+      "#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span",
     );
-    storiesBtn.id = storiesId;
-    let channelsBtn = document.querySelector(
-      `#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(2)`,
-    );
-    channelsBtn.id = channelsId;
-    let communitiesBtn = document.querySelector(
-      "#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(1)",
-    );
-    communitiesBtn.id = communitiesId;
+    const children = optionsList.querySelectorAll("._3OtEr");
+    children.forEach((element, index) => {
+      if (ids[index]) {
+        element.id = ids[index];
+      }
+    });
     clearInterval(interval);
   }
 }
