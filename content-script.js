@@ -32,33 +32,33 @@ const storiesId = "stories-btn";
 const channelsId = "channels-btn";
 const messagesId = "messages-btn";
 
-const ids = [communitiesId, storiesId, channelsId, messagesId];
+const ids = [messagesId, communitiesId, channelsId, storiesId];
 
 function hasButtons() {
   const optionsList = document.querySelector(
-    "#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span",
+    "#app > div > div.two._aigs > header > div > div > div > div > span > div > div:nth-child(1)",
   );
 
   if (!optionsList) {
     return false;
   }
 
-  const children = optionsList.querySelectorAll("._3OtEr");
+  const children = optionsList.querySelectorAll("._ajv7");
   const nextElement = children[3]?.nextElementSibling;
 
   return (
     nextElement &&
-    nextElement.tagName.toUpperCase() === "SPAN" &&
-    children.length === 5
+    nextElement.tagName.toUpperCase() === "HR" &&
+    children.length === 6
   );
 }
 
 function createIds(interval) {
   if (hasButtons()) {
     let optionsList = document.querySelector(
-      "#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span",
+      "#app > div > div.two._aigs > header > div > div > div > div > span > div > div:nth-child(1)",
     );
-    const children = optionsList.querySelectorAll("._3OtEr");
+    const children = optionsList.querySelectorAll("._ajv7");
     children.forEach((element, index) => {
       if (ids[index]) {
         element.id = ids[index];
