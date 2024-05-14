@@ -44,13 +44,8 @@ function hasButtons() {
   }
 
   const children = optionsList.querySelectorAll("._ajv7");
-  const nextElement = children[3]?.nextElementSibling;
 
-  return (
-    nextElement &&
-    nextElement.tagName.toUpperCase() === "HR" &&
-    children.length === 6
-  );
+  return children.length === 4;
 }
 
 function createIds(interval) {
