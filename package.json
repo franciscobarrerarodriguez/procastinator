@@ -1,13 +1,13 @@
 {
   "name": "procastinator",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Keep whatsapp web lite, without stories",
   "main": "index.js",
   "scripts": {
     "prettier:write": "prettier --write '**/*.js'"
   },
   "keywords": [],
-  "author": "",
+  "author": "Francisco Barrera Rodriguez",
   "license": "ISC",
   "devDependencies": {
     "prettier": "^3.0.1"
