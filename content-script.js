@@ -37,7 +37,7 @@ const ids = [messagesId, storiesId, channelsId, communitiesId];
 
 function hasButtons() {
   const optionsList = document.querySelector(
-    "#app > div > div.two._aigs > header > div > div > div > div > span > div > div:nth-child(1)",
+    "#app > div > div.x78zum5.xdt5ytf.x5yr21d > div > header > div > div > div > div > span > div > div:nth-child(1)",
   );
 
   if (!optionsList) {
@@ -52,7 +52,7 @@ function hasButtons() {
 function createIds(interval) {
   if (hasButtons()) {
     let optionsList = document.querySelector(
-      "#app > div > div.two._aigs > header > div > div > div > div > span > div > div:nth-child(1)",
+      "#app > div > div.x78zum5.xdt5ytf.x5yr21d > div > header > div > div > div > div > span > div > div:nth-child(1)",
     );
     const children = optionsList.querySelectorAll("._ajv7");
     children.forEach((element, index) => {
