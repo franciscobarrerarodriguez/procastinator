@@ -37,14 +37,14 @@ const ids = [messagesId, storiesId, channelsId, communitiesId];
 
 function hasButtons() {
   const optionsList = document.querySelector(
-    "#app > div > div.x78zum5.xdt5ytf.x5yr21d > div > header > div > div > div > div > span > div > div:nth-child(1)",
+    "#app > div > div.x78zum5.xdt5ytf.x5yr21d > div > header > div > div:nth-child(1) > div",
   );
 
   if (!optionsList) {
     return false;
   }
 
-  const children = optionsList.querySelectorAll("._ajv7");
+  const children = optionsList.children;
 
   return children.length === 4;
 }
@@ -52,9 +52,9 @@ function hasButtons() {
 function createIds(interval) {
   if (hasButtons()) {
     let optionsList = document.querySelector(
-      "#app > div > div.x78zum5.xdt5ytf.x5yr21d > div > header > div > div > div > div > span > div > div:nth-child(1)",
+      "#app > div > div.x78zum5.xdt5ytf.x5yr21d > div > header > div > div:nth-child(1) > div",
     );
-    const children = optionsList.querySelectorAll("._ajv7");
+    const children = optionsList.childNodes;
     children.forEach((element, index) => {
       if (ids[index]) {
         element.id = ids[index];
